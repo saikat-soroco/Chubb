@@ -1,0 +1,77 @@
+.step-container {
+    margin: 0 15px;
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.pending clr-icon {
+    display: none;
+}
+
+.completed clr-icon {
+    display: inline-block;
+    height: 18px;
+    width: 25px;
+    margin-top: 3px;
+}
+
+ul.progress-steps {
+    display: inline-block;
+}
+
+.progress-steps>li {
+    display: inline-block;
+    list-style: none;
+    z-index: 3;
+    float: left;
+}
+
+.rounded-step {
+    height: 25px;
+    width: 25px;
+    border: 5px solid #999;
+    border-radius: 50%;
+    margin-top: 0px;
+}
+
+.completed .rounded-step {
+    height: 35px;
+    width: 35px;
+    border: 5px solid #007CBB;
+    margin-top: -6px;
+}
+
+.circle {
+    float: left;
+}
+
+.connector {
+    float: left;
+}
+
+.connector .top {
+    height: 15px;
+    border-bottom: 6px solid #eee;
+}
+
+.completed .top {
+    height: 15px;
+    border-bottom-color: #007CBB;
+}
+
+.step_name {
+    float: left;
+    margin-left: -50%;
+    width: 75px;
+    margin-top: 20px;
+    height: auto;
+    font-size: 10px;
+    line-height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+li:last-of-type .step_name {
+    margin-top: 20px;
+}

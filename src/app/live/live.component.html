@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-8">
+    <div class="border">
+      <div class="step-title">Status of submissions</div>
+      <app-progress-step [progressSteps]="progressSteps" [status]="status"></app-progress-step>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="border">
+      <nvd3 *ngIf="!isLoading" [options]="histogramOptions" [data]="histogramData"></nvd3>
+      <div *ngIf="isLoading" class="spinner-wrpr">
+        <span class="spinner spinner-md">
+          Loading...
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <app-table [duration]="'live'" (selectedProcessEmitter)="setState($event)"></app-table>
+  </div>
+</div>

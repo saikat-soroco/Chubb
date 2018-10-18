@@ -1,0 +1,27 @@
+<div class="step-container" id = "step-container" #stepContainer>
+  <ul class="progress-steps">
+    <li class="completed">
+      <div class="">
+        <div class="connector" [style.width]="connectorWidth">
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+      </div>
+    </li>
+
+    <li *ngFor="let step of progressStepData" class="{{step.step_status?'completed':'pending'}}">
+      <div>
+          <div class="circle">
+              <div class="rounded-step">
+                <clr-icon shape="check"></clr-icon>
+              </div>
+            </div>
+            <div class="connector" [style.width]="connectorWidth">
+                <div class="top"></div>
+                <div class="bottom"></div>
+            </div>
+      </div>
+      <div class="step_name" [style.width]="connectorWidth">{{step.step_name}}</div>
+    </li>
+  </ul>
+</div>

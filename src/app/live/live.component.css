@@ -1,0 +1,10 @@
+.border {
+    border: 1px solid;
+    height: 326px;
+}
+
+.step-title {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 70px;
+}

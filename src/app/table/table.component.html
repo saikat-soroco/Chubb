@@ -1,0 +1,57 @@
+<div class="row" *ngIf="datePicker == true">
+  <div class="col-md-12">
+    <label>Processing Date</label>
+  </div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <span>From</span>
+        <input #dateInputFrom type="date" clrDate [(ngModel)]="dateFrom" (ngModelChange)="onDateFromChange($event)">
+      </div>
+
+      <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <span>To</span>
+        <input #dateInputTo type="date" clrDate [(ngModel)]="dateTo" (ngModelChange)="onDateToChange($event)">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <br>
+    <button id="excel-download" (click)="downloadExcel()">
+      Download as Excel
+    </button>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-12" id="rest-col-container">
+        <clr-datagrid>
+          <clr-dg-column *ngFor="let col of keyCols;let i = index">
+            {{col}}
+            <clr-dg-string-filter [clrDgStringFilter]="columnFilters[keyColNames[i]]"></clr-dg-string-filter>
+          </clr-dg-column>
+          <clr-dg-column></clr-dg-column>
+          <clr-dg-row *clrDgItems="let row of displayRecordData;let i=index" (click)="duration=='live'?getLiveStatus(row.sim_incident):undefined">
+            <clr-dg-cell *ngFor="let col of keyColNames;let j=index">
+              <span *ngIf="_commonService.getContext() == 'wsp' && col === 'submission' && row[col];else other_col">
+                <ul>
+                  <li *ngFor="let subs of row[col].split(',')">{{subs}}</li>
+                </ul>
+              </span>
+              <ng-template #other_col>{{row[col]}}</ng-template>
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <button class="enabler-button" (click)="goToEnabler(row.sim_incident)">Go to enabler</button>
+            </clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-footer>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} records
+            <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+          </clr-dg-footer>
+        </clr-datagrid>
+      </div>
+
+    </div>
+  </div>
+</div>
