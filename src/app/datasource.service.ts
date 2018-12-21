@@ -49,7 +49,7 @@ export class DatasourceService {
 
   getAutomationFactor(context, dateFrom: string, dateTo: string) {
     
-    return this._http.get('v1.0/api/data/' + context + '_automation_factor/row?no-cached=true&start_date='
+    return this._http.get('/v1.0/api/data/' + context + '_automation_factor/row?no-cached=true&start_date='
       + dateFrom + '&end_date=' + dateTo).map((response) => {
         return response.json();
       });
@@ -58,7 +58,7 @@ export class DatasourceService {
 
   getSubmissionStatus(context, dateFrom: string, dateTo: string): Observable<any> {
 
-    return this._http.get('v1.0/api/data/' + context + '_submisison_status/row?no-cached=true&start_date='
+    return this._http.get('/v1.0/api/data/' + context + '_submisison_status/row?no-cached=true&start_date='
       + dateFrom + '&end_date=' + dateTo).map((response) => {
         return response.json();
       });

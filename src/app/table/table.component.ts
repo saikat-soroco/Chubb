@@ -62,7 +62,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   ngOnChanges() {
     if (this.duration) {
-      this.keyColNames = this.duration == 'live' ? ['sim_incident #', 'queue', 'full_insured_name', 'logged_as', 'submission', 'pending_reason', 'submission_status'] : ['date', 'sim_incident #', 'full_insured_name', 'logged_as', 'submission', 'producer_name', 'underwriter_name', 'pending_reason', 'submission_status'];
+      this.keyColNames = this.duration == 'live' ? ['sim_incident #', 'submission_type', 'queue', 'full_insured_name', 'logged_as', 'submission', 'pending_reason', 'submission_status'] : ['date', 'sim_incident #','submission_type', 'full_insured_name', 'logged_as', 'submission', 'producer_name', 'underwriter_name', 'pending_reason', 'submission_status'];
       this.keyColNames.forEach((col) => {
         this.columnFilters[col] = new GenericStringFilter(col);
       });
@@ -172,6 +172,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this._datasource.downloadExcel(this._commonService.getContext(), this.duration, dateFrom, dateTo).subscribe((filename) => {
       filename = filename.replace(/\"/g, '').replace(/\n/g, '');
       if (parseInt(filename) === 0) {
+        alert("No file to download");
         return;
       }
       const getUrl = window.location;

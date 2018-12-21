@@ -36,7 +36,7 @@ export class LiveComponent implements OnInit {
         showMaxMin: false,
         ticks: false,
         tickFormat: function (d) {
-          return ['Processed', 'Pending', 'In Progress'][d];
+          return ['Processed', 'Pending', 'In Progress', 'Stuck in Bot'][d];
         },
         autoSkip: false
       },
@@ -69,7 +69,7 @@ export class LiveComponent implements OnInit {
       }
 
       const dt = Object.keys(data[0])[0];
-      this.histogramData = ['Processed', 'Pending', 'In Progress'].map((state, index) => {
+      this.histogramData = ['Processed', 'Pending', 'In Progress', 'Stuck in bot'].map((state, index) => {
         return {
           'color': '#007CBB', 'key': state, 'values': [{ 'x': index, 'y': data[0][dt][state.toUpperCase()] ? data[0][dt][state.toUpperCase()] : 0 }]
         };

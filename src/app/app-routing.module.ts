@@ -24,12 +24,13 @@ export const routes: Routes = [
         component: LiveComponent
       }
     ]
-  }
+  },
+  { path: '**', redirectTo: 'clearance_dashboard', pathMatch: 'full' }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

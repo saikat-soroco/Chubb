@@ -8,3 +8,7 @@
     padding-top: 10px;
     padding-bottom: 70px;
 }
+
+.nvd3 text{
+    font: normal 10px Arial !important;
+}

@@ -44,8 +44,8 @@ export class CommonService {
   }
 
   adjustForTimezone(date: Date): Date {
-    // var timeOffsetInMS: number = date.getTimezoneOffset() * 60000;
-    // date.setTime(date.getTime() + timeOffsetInMS); // adding, idealy it should subtract
+    var timeOffsetInMS: number = date.getTimezoneOffset() * 60000;
+    date.setTime(date.getTime() + timeOffsetInMS); // adding, idealy it should subtract
 
     return date;
   }

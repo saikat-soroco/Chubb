@@ -17,7 +17,7 @@
           <clr-icon shape="caret down"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <a href="..." clrDropdownItem>Preferences</a>
+          <!-- <a href="..." clrDropdownItem>Preferences</a> -->
           <a href="/logout" clrDropdownItem>Log out</a>
         </clr-dropdown-menu>
       </clr-dropdown>
@@ -33,4 +33,21 @@
     </ul>
   </nav>
   <app-nav [link]="currentLink" class="stacked"></app-nav>
+</div>
+
+<div class="notification" *ngIf="close">
+  <div class="close" (click)="close=false">
+    X
+  </div>
+  <div class="message">
+    <span>Instructions to the user:</span>
+    <ol>
+      <li>
+        <span>The Dashboard must be opened on a Chrome browser</span>
+      </li>
+      <li>
+        <span>Pop-ups would need to be enabled to download an excel spreadsheet. If pop-ups are disabled by default, a warning, when downloading an excel, would be displayed on the right side of the browser search bar - using this, the user can enable pop-ups for the Dashboard</span>
+      </li>
+    </ol>
+  </div>
 </div>

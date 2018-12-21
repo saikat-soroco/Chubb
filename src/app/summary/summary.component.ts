@@ -206,7 +206,16 @@ export class SummaryComponent implements OnInit {
             }
             return { 'x': Date.parse(this._commonService.adjustForTimezone(new Date(currDate)).toString()), 'y': dt[currDate]['IN PROGRESS'] };
           })
-        }];
+        },{
+          'color': '#ff0000', 'key': 'Stuck in bot', 'values': data.map((dt) => {
+            let currDate = Object.keys(dt)[0];
+            if (!dt[currDate]['STUCK IN BOT']) {
+              dt[currDate]['STUCK IN BOT'] = 0;
+            }
+            return { 'x': Date.parse(this._commonService.adjustForTimezone(new Date(currDate)).toString()), 'y': dt[currDate]['STUCK IN BOT'] };
+          })
+        }
+      ];
     });
 
     // tempData = tempData?tempData:1;
@@ -319,14 +328,16 @@ export class SummaryComponent implements OnInit {
         chart: {
           type: chartType,
           height: this.height,
-          xDomain: xDomain,
+          // xDomain: xDomain,
           yDomain: [0, 1],
           showLegend: false,
           showControls: false,
-          
+          // tooltip: {
+          //   enabled: false
+          // },
           clipEdge: false,
-          padData: true,
-          padDataOuter: 0.1,
+          // padData: true,
+          // padDataOuter: 0.1,
           margin: {
             top: 30,
             right: 20,
@@ -363,9 +374,12 @@ export class SummaryComponent implements OnInit {
       this.AFData = [{
         area: true, 'color': 'rgb(0, 120, 210)', 'key': 'Processed', 'values':
           data.map((newDate) => {
-            //console.log("Map= ",newDate)
+            console.log("Map= ",newDate)
             return {
-              'x': Date.parse(this._commonService.adjustForTimezone(new Date(newDate.date)).toString()), 'y': (newDate.automation_factor / 100).toFixed(2)
+              // 'x': Date.parse(this._commonService.adjustForTimezone(new Date(newDate.date)).toString()), 'y': (newDate.automation_factor / 100).toFixed(2)
+              'x': new Date(this.changeDateFormat(newDate.date)), 'y': (newDate.automation_factor / 100).toFixed(2)
+            
+              // changeDateFormat(date)
             };
           })
       }];
@@ -495,8 +509,8 @@ export class SummaryComponent implements OnInit {
             clipEdge: false,
             
             interpolate: 'linear',
-            padData: true,
-            padDataOuter: 0.1,
+            // padData: true,
+            // padDataOuter: 0.1,
             margin: {
               top: 30,
               right: 20,
@@ -607,6 +621,15 @@ export class SummaryComponent implements OnInit {
         ;
       return year + '-' + month + '-' + day;
     }
+
+    
+  }
+  //yy-mm-dd
+  changeDateFormat(date){
+      let mydate = date.split('/');
+      let myNewDate = mydate[2] + "-" + mydate[0] + "-" + mydate[1];
+      console.log(myNewDate)
+      return myNewDate;
   }
 
   // defaultDate(substractDate, date){

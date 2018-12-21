@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ElementRef } from '@angular/core';
 import * as _ from 'lodash';
 import { DatasourceService } from './datasource.service';
 
@@ -15,12 +15,28 @@ export class AppComponent implements OnInit {
   user = '';
   currentLink;
 
-  constructor(private _datasourceService: DatasourceService) { }
+  close:boolean = true;
+
+  constructor(private _datasourceService: DatasourceService,
+              private el:ElementRef) { }
 
   ngOnInit() {
     this.currentLink = this.links[0];
     this._datasourceService.getLoggedinUser().subscribe((response) => {
       this.user = response.email;
-    })
+    });
+
+    let refreshClearInterval;
+    // this.el.nativeElement.addEventListener("click", function() { 
+    //   clearInterval(refreshClearInterval);
+    //   // refresh();
+    // });
+
+    function refresh(){
+      refreshClearInterval = setInterval(()=>{
+        window.location.reload();
+      },840000);
+    }
+    // refresh();
   }
 }
